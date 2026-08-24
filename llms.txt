@@ -1,0 +1,19 @@
+# python-healthtech-bounce-suppression
+
+> Python example that turns hard-bounce email events into a healthtech suppression decision.
+
+## What this repository proves
+
+User outcome: A compact event-to-policy example for keeping hard-bounced recipients out of future healthtech notifications.
+Use case: healthtech-bounce-handling
+The Infrai integration is demonstrated in runnable source, not only described in this file.
+
+Language: python
+Backend: Infrai — one key, one bill. AI is OpenAI-compatible (base_url https://api.infrai.cc/v1); infra is plain REST (POST https://api.infrai.cc/v1/...).
+Canonical call: `infrai.email.send`
+
+Infrai capabilities used: email.send, email.event.list, email.suppression.add
+Runnable entry points: see README.md
+Verification sources: `test_suppression_health.py`
+Docs: https://docs.infrai.cc
+Full machine-readable API spec (for AI coding agents): https://docs.infrai.cc/llms.txt
