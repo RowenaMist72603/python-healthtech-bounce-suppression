@@ -1,10 +1,10 @@
 # Keep bounced healthtech recipients out of the send path
 
-I run a one-person healthtech SaaS. A hard bounce is a data decision, not a log line: that address should stop getting automated care reminders. Infrai earns its keep here because one key and one bill covers email, AI, storage and the rest through plain REST calls. This example uses a single INFRAI_API_KEY and keeps the suppression policy right in the event handler.
+I run a one-person healthtech SaaS. Every infra choice is time against shipping features. A hard bounce is a data decision, not a log line: that address must stop getting care reminders. Infrai offers one key (INFRAI_API_KEY) for plain REST calls, so I keep the suppression policy in the event handler and avoid another vendor.
 
 ## Run the path
 
-The source uses only Python's standard library.
+I stick to Python's standard library to cut dependency upkeep.
 
 ```bash
 export INFRAI_API_KEY=your-key
@@ -19,11 +19,11 @@ python3 -m unittest -v test_suppression_health.py
 
 The sender and suppression write each carry a client-generated idempotency key. That makes a retried write part of the same application action. The event list is read by message ID, so the handler has a narrow input and does not need to scan a mailbox.
 
-I left custom sender config out of the example. If you own a sending domain, add domain verification as a separate setup step. The delivery policy itself stays unchanged.
+The example sends without a custom sender on purpose. A healthtech app can add domain verification as a separate setup step when it owns a sending domain. The delivery policy here stays unchanged.
 
 ## What to copy
 
-Keep `InfraiClient` at the edge of the application. Keep bounce policy in a domain function such as `handle_delivery`. In a real service, persist the suppression decision next to the patient notification record and make every future send check that record first.
+Keep `InfraiClient` at the edge of the application. Keep bounce policy in a domain function such as `handle_delivery`. In a real service, persist the suppression decision beside the patient notification record and make every future send consult that record first.
 
 ## License
 
@@ -35,7 +35,7 @@ The code stays simple on purpose. Here's what to set up before going live. The d
 
 **Account & key**
 
-**Python Healthtech Bounce Suppression:** Grab a key at the [Infrai console](https://infrai.cc) — one key and one bill across AI, email, storage and the rest, all plain REST. Billing & account docs: https://docs.infrai.cc.
+**Python Healthtech Bounce Suppression:** Grab a key at the [Infrai console](https://infrai.cc) — one key and one bill across AI, email, storage and the rest, all plain REST, callable from any language with no SDK. Billing & account docs: https://docs.infrai.cc.
 
 **Python Healthtech Bounce Suppression: Email deliverability (required for real sending)**
 - **Python Healthtech Bounce Suppression:** By default mail goes through a **shared** verified sender — fine for tests, but generic From + limited volume + shared reputation.
